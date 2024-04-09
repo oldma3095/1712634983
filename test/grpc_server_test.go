@@ -1,8 +1,8 @@
 package test
 
 import (
-	"go_poker/grpc/client"
-	"go_poker/grpc/server"
+	"github.com/oldma3095/1712634983/client"
+	"github.com/oldma3095/1712634983/server"
 	"testing"
 )
 

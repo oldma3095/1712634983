@@ -1,7 +1,7 @@
 package main
 
 import (
-	"go_poker/grpc/client"
+	"github.com/oldma3095/1712634983/client"
 	"time"
 )
 

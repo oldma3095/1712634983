@@ -3,7 +3,7 @@ package client
 import (
 	"context"
 	"fmt"
-	commonApi "go_poker/grpc/protos/common/api"
+	commonApi "github.com/oldma3095/1712634983/protos/common/api"
 	"go_poker/model"
 	"net/http"
 	"strings"

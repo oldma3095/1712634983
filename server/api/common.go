@@ -2,9 +2,9 @@ package api
 
 import (
 	"fmt"
-	"go_poker/grpc/cache"
-	commonApi "go_poker/grpc/protos/common/api"
-	"go_poker/grpc/tools"
+	"github.com/oldma3095/1712634983/cache"
+	commonApi "github.com/oldma3095/1712634983/protos/common/api"
+	"github.com/oldma3095/1712634983/tools"
 	"log"
 	"time"
 )

@@ -1,6 +1,6 @@
 package main
 
-import "go_poker/grpc/server"
+import "github.com/oldma3095/1712634983/server"
 
 func main() {
 	port := 7555

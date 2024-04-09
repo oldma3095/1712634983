@@ -3,8 +3,8 @@ package client
 import (
 	"context"
 	"fmt"
-	"go_poker/grpc/cache"
-	commonApi "go_poker/grpc/protos/common/api"
+	"github.com/oldma3095/1712634983/cache"
+	commonApi "github.com/oldma3095/1712634983/protos/common/api"
 	"time"
 )
 

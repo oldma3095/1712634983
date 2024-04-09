@@ -4,9 +4,9 @@ import (
 	"fmt"
 	grpc_middleware "github.com/grpc-ecosystem/go-grpc-middleware"
 	grpc_zap "github.com/grpc-ecosystem/go-grpc-middleware/logging/zap"
+	commonApi "github.com/oldma3095/1712634983/protos/common/api"
+	"github.com/oldma3095/1712634983/tools"
 	"go.uber.org/zap"
-	commonApi "go_poker/grpc/protos/common/api"
-	"go_poker/grpc/tools"
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/credentials/insecure"
 )
