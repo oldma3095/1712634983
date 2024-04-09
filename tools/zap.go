@@ -5,7 +5,6 @@ import (
 	zaprotatelogs "github.com/lestrrat-go/file-rotatelogs"
 	"go.uber.org/zap"
 	"go.uber.org/zap/zapcore"
-	"go_poker/utils"
 	"os"
 	"time"
 )
@@ -14,7 +13,7 @@ var level zapcore.Level
 var path = "grpc_log"
 
 func Zap() (logger *zap.Logger) {
-	if ok, _ := utils.PathExists(path); !ok { // 判断是否有Director文件夹
+	if ok, _ := PathExists(path); !ok { // 判断是否有Director文件夹
 		_ = os.Mkdir(path, os.ModePerm)
 	}
 
