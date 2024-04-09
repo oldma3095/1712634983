@@ -1,6 +1,6 @@
 module github.com/oldma3095/1712634983
 
-go 1.22.2
+go 1.21.9
 
 require (
 	github.com/grpc-ecosystem/go-grpc-middleware v1.4.0
