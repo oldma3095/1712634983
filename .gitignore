@@ -1,0 +1,8 @@
+.idea
+/run/client/grpc_log/
+/run/client/grpc_client
+/run/server/grpc_server
+/run/server/grpc_log/
+/grpc_log/
+/grpc_client
+/grpc_server
