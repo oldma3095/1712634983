@@ -104,7 +104,7 @@ func ClientGetSystemInfo() (infos SystemInfo) {
 	return infos
 }
 
-func handleSystemInfo() SystemInfo {
+func HandleSystemInfo() SystemInfo {
 	initCpu, _ := software.InitCPU()
 	initRAM, _ := software.InitRAM()
 	initDisk, _ := software.InitDisk()
