@@ -8,7 +8,7 @@ import (
 	"time"
 )
 
-func (client *Clients) PushClientInfoToMaster() {
+func (client *Clients) PushClientInfoToMaster(uuid string) {
 	var err error
 	defer func() {
 		if err != nil {
@@ -100,6 +100,7 @@ func (client *Clients) PushClientInfoToMaster() {
 					KernelVersion:  systemInfo.Software.KernelVersion,
 					Mac:            systemInfo.Software.MAC,
 				},
+				Uuid: uuid,
 			}
 			err = stream.SendMsg(&info)
 			if err != nil {

@@ -26,7 +26,7 @@ func TestGrpcClient(t *testing.T) {
 		for {
 			select {
 			case <-ticker.C:
-				c.PushClientInfoToMaster()
+				c.PushClientInfoToMaster("test")
 			}
 		}
 	}()

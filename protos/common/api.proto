@@ -19,6 +19,7 @@ message ClientInfoReq{
   IntelGPU intelGPU = 5;
   NetSpeed netSpeed = 6;
   Software software = 7;
+  string uuid = 8;
 }
 
 message ClientInfoRes{
