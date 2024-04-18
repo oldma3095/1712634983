@@ -4,13 +4,11 @@ import (
 	"fmt"
 	grpc_middleware "github.com/grpc-ecosystem/go-grpc-middleware"
 	grpc_zap "github.com/grpc-ecosystem/go-grpc-middleware/logging/zap"
-	"github.com/oldma3095/1712634983/cache"
 	commonApi "github.com/oldma3095/1712634983/protos/common/api"
 	"github.com/oldma3095/1712634983/tools"
 	"go.uber.org/zap"
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/credentials/insecure"
-	"time"
 )
 
 type Clients struct {
@@ -20,16 +18,6 @@ type Clients struct {
 }
 
 func NewMaster(serverIp string, serverPort int) (*Clients, error) {
-	go func() {
-		ticker := time.NewTicker(time.Second * 2)
-		defer ticker.Stop()
-		for {
-			select {
-			case <-ticker.C:
-				cache.HandleSystemInfo()
-			}
-		}
-	}()
 	zLog := tools.Zap()
 	address := fmt.Sprintf("%s:%d", serverIp, serverPort)
 	//credentials, err := credentials.NewClientTLSFromFile("../pkg/tls/server.pem", "go-grpc-example")
