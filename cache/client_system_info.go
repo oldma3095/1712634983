@@ -7,6 +7,7 @@ import (
 )
 
 type SystemInfo struct {
+	UUID     string          `json:"uuid"`
 	Cpu      Cpu             `json:"cpu"`
 	Ram      Ram             `json:"ram"`
 	Disk     Disk            `json:"disk"`
@@ -84,15 +85,19 @@ type NetSpeed struct {
 	RecvSpeed float32 `json:"recvSpeed"` // 接收速度
 }
 
-var systemInfoCK = "system_info"
 var lastSentBytes uint64
 var lastRecvBytes uint64
 var lastTime int64
 var lastSentSpeed float32
 var lastRecvSpeed float32
 
-func GetSystemInfo() (infos SystemInfo) {
-	load, b := Cache.Get(systemInfoCK)
+func getSystemInfoCacheKey() string {
+	return "client_system_info"
+}
+
+func ClientGetSystemInfo() (infos SystemInfo) {
+	key := getSystemInfoCacheKey()
+	load, b := Cache.Get(key)
 	if b && load != nil {
 		infos = load.(SystemInfo)
 	}
@@ -200,6 +205,7 @@ func handleSystemInfo() SystemInfo {
 			MAC:            softwareInfo.MAC,
 		},
 	}
-	Cache.Set(systemInfoCK, info, time.Minute)
+	key := getSystemInfoCacheKey()
+	Cache.Set(key, info, time.Minute)
 	return info
 }

@@ -6,3 +6,4 @@
 /grpc_log/
 /grpc_client
 /grpc_server
+/test/grpc_log/

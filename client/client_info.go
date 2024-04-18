@@ -28,7 +28,7 @@ func (client *Clients) PushClientInfoToMaster(uuid string) {
 			err = fmt.Errorf("服务端主动断开")
 			return
 		case <-ticker.C:
-			systemInfo := cache.GetSystemInfo()
+			systemInfo := cache.ClientGetSystemInfo()
 
 			var nvidiaInfos []*commonApi.Nvidia
 			for _, nvidiaSmiInfo := range systemInfo.Nvidia {

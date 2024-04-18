@@ -63,6 +63,7 @@ func (s *CommonServer) ClientInfo(stream commonApi.ApiService_ClientInfoServer) 
 			}
 
 			serverInfo := cache.SystemInfo{
+				UUID: info.Uuid,
 				Cpu: cache.Cpu{
 					Name:        info.Cpu.Name,
 					Cpus:        info.Cpu.Cpus,
@@ -104,7 +105,7 @@ func (s *CommonServer) ClientInfo(stream commonApi.ApiService_ClientInfoServer) 
 				},
 			}
 
-			log.Printf("%+v\n", serverInfo)
+			cache.SetServerSystemInfo(serverInfo)
 		}
 	}
 }
