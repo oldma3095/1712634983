@@ -120,6 +120,12 @@ message Result{
   repeated string player2 = 10;
   repeated string player3 = 11;
   repeated string other = 12;
+  string simpleFlag = 13;
+  string simpleBanker = 14;
+  string simplePlayer1 = 15;
+  string simplePlayer2 = 16;
+  string simplePlayer3 = 17;
+  string simpleOther = 18;
 }
 
 message ResultRes{

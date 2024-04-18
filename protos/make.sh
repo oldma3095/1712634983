@@ -9,4 +9,4 @@ go install github.com/grpc-ecosystem/grpc-gateway/v2/protoc-gen-grpc-gateway
 go install github.com/grpc-ecosystem/grpc-gateway/v2/protoc-gen-openapiv2
 
 api:
-protoc -I=./grpc/protos/third_party -I=./grpc/protos/ --go_out=./grpc/protos/ --go-grpc_out=./grpc/protos/ ./grpc/protos/common/*.proto
+protoc -I=./protos/third_party -I=./protos/ --go_out=./protos/ --go-grpc_out=./protos/ ./protos/common/*.proto

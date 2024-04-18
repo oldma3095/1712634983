@@ -1,6 +1,7 @@
 package api
 
 import (
+	"context"
 	"fmt"
 	"github.com/oldma3095/1712634983/cache"
 	commonApi "github.com/oldma3095/1712634983/protos/common/api"
@@ -106,4 +107,36 @@ func (s *CommonServer) ClientInfo(stream commonApi.ApiService_ClientInfoServer) 
 			log.Printf("%+v\n", serverInfo)
 		}
 	}
+}
+
+func (s *CommonServer) Result(context context.Context, req *commonApi.ResultReq) (res *commonApi.ResultRes, err error) {
+	res = &commonApi.ResultRes{
+		Code: 0,
+		Msg:  "",
+	}
+	if req.Code == 0 && req.GetData() != nil && req.Data.Id > 0 {
+		reqData := req.GetData()
+		info := cache.NiuNiuResult{
+			Id:            reqData.Id,
+			SaveTime:      reqData.SaveTime,
+			Image:         reqData.Image,
+			RawImage:      reqData.RawImage,
+			Video:         reqData.Video,
+			VideoSize:     reqData.VideoSize,
+			Flag:          reqData.Flag,
+			Banker:        reqData.Banker,
+			Player1:       reqData.Player1,
+			Player2:       reqData.Player2,
+			Player3:       reqData.Player3,
+			Other:         reqData.Other,
+			SimpleFlag:    reqData.SimpleFlag,
+			SimpleBanker:  reqData.SimpleBanker,
+			SimplePlayer1: reqData.SimplePlayer1,
+			SimplePlayer2: reqData.SimplePlayer2,
+			SimplePlayer3: reqData.SimplePlayer3,
+			SimpleOther:   reqData.SimpleOther,
+		}
+		cache.SetNiuNiuResultData(info)
+	}
+	return
 }
