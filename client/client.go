@@ -13,7 +13,6 @@ import (
 
 type Clients struct {
 	log              *zap.Logger
-	exit             chan string
 	conn             *grpc.ClientConn
 	apiServiceClient commonApi.ApiServiceClient
 }
@@ -43,7 +42,6 @@ func NewMaster(serverIp string, serverPort int) (*Clients, error) {
 
 	client := &Clients{
 		log:              zLog,
-		exit:             make(chan string),
 		conn:             conn,
 		apiServiceClient: commonApi.NewApiServiceClient(conn),
 	}

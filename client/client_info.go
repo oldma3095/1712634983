@@ -8,13 +8,7 @@ import (
 	"time"
 )
 
-func (client *Clients) PushClientInfoToMaster(uuid string) {
-	var err error
-	defer func() {
-		if err != nil {
-			client.exit <- err.Error()
-		}
-	}()
+func (client *Clients) PushClientInfoToMaster(uuid string) (err error) {
 	stream, err := client.apiServiceClient.ClientInfo(context.Background())
 	if err != nil {
 		return
