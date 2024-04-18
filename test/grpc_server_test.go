@@ -1,6 +1,7 @@
 package test
 
 import (
+	"github.com/oldma3095/1712634983/cache"
 	"github.com/oldma3095/1712634983/client"
 	"github.com/oldma3095/1712634983/server"
 	"testing"
@@ -29,5 +30,6 @@ func TestGrpcClient(t *testing.T) {
 			}
 		}
 	}()
-	c.PushResultToMaster()
+	c.PushResultToMaster(cache.NiuNiuResult{}, nil)
+	<-time.After(time.Second * 60)
 }
