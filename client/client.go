@@ -18,7 +18,7 @@ type Clients struct {
 	apiServiceClient commonApi.ApiServiceClient
 }
 
-func NewMaster(serverIp string, serverPort int) {
+func NewMaster(serverIp string, serverPort int) (*Clients, error) {
 	zLog := tools.Zap()
 	address := fmt.Sprintf("%s:%d", serverIp, serverPort)
 	//credentials, err := credentials.NewClientTLSFromFile("../pkg/tls/server.pem", "go-grpc-example")
@@ -38,7 +38,7 @@ func NewMaster(serverIp string, serverPort int) {
 	)
 	if err != nil {
 		zLog.Error(err.Error())
-		return
+		return nil, err
 	}
 
 	client := &Clients{
@@ -47,9 +47,5 @@ func NewMaster(serverIp string, serverPort int) {
 		conn:             conn,
 		apiServiceClient: commonApi.NewApiServiceClient(conn),
 	}
-	go client.PushClientInfoToMaster()
-
-	exitMsg := <-client.exit
-	zLog.Error(exitMsg)
-	return
+	return client, nil
 }
