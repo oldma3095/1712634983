@@ -69,9 +69,7 @@ func handleRawIntelGPUInfos(output string) (info IntelGPUInfo, err error) {
 	}
 
 	var rawInfo rawIntelGPUInfo
-	if len(rawInfos) > 1 {
-		rawInfo = rawInfos[len(rawInfos)-1]
-	} else {
+	if len(rawInfos) > 0 {
 		rawInfo = rawInfos[0]
 	}
 
