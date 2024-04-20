@@ -9,7 +9,7 @@ import (
 )
 
 func (client *Clients) PushClientInfoToMaster(uuid string) (err error) {
-	stream, err := client.apiServiceClient.ClientInfo(context.Background())
+	stream, err := client.ApiServiceClient.ClientInfo(context.Background())
 	if err != nil {
 		return
 	}

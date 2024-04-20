@@ -12,9 +12,9 @@ import (
 )
 
 type Clients struct {
-	log              *zap.Logger
-	conn             *grpc.ClientConn
-	apiServiceClient commonApi.ApiServiceClient
+	Log              *zap.Logger
+	Conn             *grpc.ClientConn
+	ApiServiceClient commonApi.ApiServiceClient
 }
 
 func NewMaster(serverIp string, serverPort int) (*Clients, error) {
@@ -41,9 +41,9 @@ func NewMaster(serverIp string, serverPort int) (*Clients, error) {
 	}
 
 	client := &Clients{
-		log:              zLog,
-		conn:             conn,
-		apiServiceClient: commonApi.NewApiServiceClient(conn),
+		Log:              zLog,
+		Conn:             conn,
+		ApiServiceClient: commonApi.NewApiServiceClient(conn),
 	}
 	return client, nil
 }

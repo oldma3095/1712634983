@@ -35,12 +35,12 @@ func (client *Clients) PushResultToMaster(data cache.NiuNiuResult, predictErr er
 		}
 	}
 
-	res, err := client.apiServiceClient.Result(context.Background(), req)
+	res, err := client.ApiServiceClient.Result(context.Background(), req)
 	if err != nil {
-		client.log.Error(err.Error())
+		client.Log.Error(err.Error())
 		return
 	}
 	if res.Code != 0 && res.Code != http.StatusOK {
-		client.log.Error(res.Msg)
+		client.Log.Error(res.Msg)
 	}
 }
