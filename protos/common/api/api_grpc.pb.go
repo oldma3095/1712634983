@@ -21,6 +21,7 @@ const _ = grpc.SupportPackageIsVersion7
 const (
 	ApiService_ClientInfo_FullMethodName = "/common.ApiService/ClientInfo"
 	ApiService_Result_FullMethodName     = "/common.ApiService/Result"
+	ApiService_Handle_FullMethodName     = "/common.ApiService/Handle"
 )
 
 // ApiServiceClient is the client API for ApiService service.
@@ -29,6 +30,7 @@ const (
 type ApiServiceClient interface {
 	ClientInfo(ctx context.Context, opts ...grpc.CallOption) (ApiService_ClientInfoClient, error)
 	Result(ctx context.Context, in *ResultReq, opts ...grpc.CallOption) (*ResultRes, error)
+	Handle(ctx context.Context, opts ...grpc.CallOption) (ApiService_HandleClient, error)
 }
 
 type apiServiceClient struct {
@@ -82,12 +84,44 @@ func (c *apiServiceClient) Result(ctx context.Context, in *ResultReq, opts ...gr
 	return out, nil
 }
 
+func (c *apiServiceClient) Handle(ctx context.Context, opts ...grpc.CallOption) (ApiService_HandleClient, error) {
+	stream, err := c.cc.NewStream(ctx, &ApiService_ServiceDesc.Streams[1], ApiService_Handle_FullMethodName, opts...)
+	if err != nil {
+		return nil, err
+	}
+	x := &apiServiceHandleClient{stream}
+	return x, nil
+}
+
+type ApiService_HandleClient interface {
+	Send(*HandleReq) error
+	Recv() (*HandleRes, error)
+	grpc.ClientStream
+}
+
+type apiServiceHandleClient struct {
+	grpc.ClientStream
+}
+
+func (x *apiServiceHandleClient) Send(m *HandleReq) error {
+	return x.ClientStream.SendMsg(m)
+}
+
+func (x *apiServiceHandleClient) Recv() (*HandleRes, error) {
+	m := new(HandleRes)
+	if err := x.ClientStream.RecvMsg(m); err != nil {
+		return nil, err
+	}
+	return m, nil
+}
+
 // ApiServiceServer is the server API for ApiService service.
 // All implementations must embed UnimplementedApiServiceServer
 // for forward compatibility
 type ApiServiceServer interface {
 	ClientInfo(ApiService_ClientInfoServer) error
 	Result(context.Context, *ResultReq) (*ResultRes, error)
+	Handle(ApiService_HandleServer) error
 	mustEmbedUnimplementedApiServiceServer()
 }
 
@@ -100,6 +134,9 @@ func (UnimplementedApiServiceServer) ClientInfo(ApiService_ClientInfoServer) err
 }
 func (UnimplementedApiServiceServer) Result(context.Context, *ResultReq) (*ResultRes, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Result not implemented")
+}
+func (UnimplementedApiServiceServer) Handle(ApiService_HandleServer) error {
+	return status.Errorf(codes.Unimplemented, "method Handle not implemented")
 }
 func (UnimplementedApiServiceServer) mustEmbedUnimplementedApiServiceServer() {}
 
@@ -158,6 +195,32 @@ func _ApiService_Result_Handler(srv interface{}, ctx context.Context, dec func(i
 	return interceptor(ctx, in, info, handler)
 }
 
+func _ApiService_Handle_Handler(srv interface{}, stream grpc.ServerStream) error {
+	return srv.(ApiServiceServer).Handle(&apiServiceHandleServer{stream})
+}
+
+type ApiService_HandleServer interface {
+	Send(*HandleRes) error
+	Recv() (*HandleReq, error)
+	grpc.ServerStream
+}
+
+type apiServiceHandleServer struct {
+	grpc.ServerStream
+}
+
+func (x *apiServiceHandleServer) Send(m *HandleRes) error {
+	return x.ServerStream.SendMsg(m)
+}
+
+func (x *apiServiceHandleServer) Recv() (*HandleReq, error) {
+	m := new(HandleReq)
+	if err := x.ServerStream.RecvMsg(m); err != nil {
+		return nil, err
+	}
+	return m, nil
+}
+
 // ApiService_ServiceDesc is the grpc.ServiceDesc for ApiService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -174,6 +237,12 @@ var ApiService_ServiceDesc = grpc.ServiceDesc{
 		{
 			StreamName:    "ClientInfo",
 			Handler:       _ApiService_ClientInfo_Handler,
+			ClientStreams: true,
+		},
+		{
+			StreamName:    "Handle",
+			Handler:       _ApiService_Handle_Handler,
+			ServerStreams: true,
 			ClientStreams: true,
 		},
 	},

@@ -7,10 +7,63 @@ option go_package = "common/api";
 service ApiService {
   rpc ClientInfo (stream ClientInfoReq) returns (ClientInfoRes) {}
   rpc Result (ResultReq) returns (ResultRes) {}
+  rpc Handle (stream HandleReq) returns (stream HandleRes) {}
+}
+
+/////////////////////////////////////////////////////////result////////////////////////////////////////////////////////
+message HandleReq{
+  int32 code = 1;
+  string msg = 2;
+  Result Data = 3;
+}
+
+enum Method{
+  Create = 0;
+  Delete = 1;
+  Update = 2;
+  Get = 3;
+}
+
+message HandleRes{
+  Method method = 1; // create delete update get
+  bool record = 2; // 是否录制视频
+}
+
+
+/////////////////////////////////////////////////////////result////////////////////////////////////////////////////////
+message ResultReq{
+  int32 code = 1;
+  string msg = 2;
+  Result Data = 3;
+}
+
+message Result{
+  uint64   id = 1;
+  int64  saveTime = 2;  // 保存时间戳
+  string image = 3;     // 图片地址
+  string rawImage = 4;  // 图片地址
+  string video = 5;     // 录制视频地址
+  int64  videoSize = 6; // 视频大小
+  repeated string flag = 7;
+  repeated string banker = 8;
+  repeated string player1 = 9;
+  repeated string player2 = 10;
+  repeated string player3 = 11;
+  repeated string other = 12;
+  string simpleFlag = 13;
+  string simpleBanker = 14;
+  string simplePlayer1 = 15;
+  string simplePlayer2 = 16;
+  string simplePlayer3 = 17;
+  string simpleOther = 18;
+}
+
+message ResultRes{
+  int32 code = 1;
+  string msg = 2;
 }
 
 /////////////////////////////////////////////////////////system////////////////////////////////////////////////////////
-
 message ClientInfoReq{
   Cpu cpu = 1;
   Ram ram = 2;
@@ -98,38 +151,4 @@ message NetSpeed{
 message NetInfo{
   string statName = 1;
   string localIpNet = 2;
-}
-
-/////////////////////////////////////////////////////////result////////////////////////////////////////////////////////
-
-message ResultReq{
-  int32 code = 1;
-  string msg = 2;
-  Result Data = 3;
-}
-
-message Result{
-  uint64   id = 1;
-  int64  saveTime = 2;  // 保存时间戳
-  string image = 3;     // 图片地址
-  string rawImage = 4;  // 图片地址
-  string video = 5;     // 录制视频地址
-  int64  videoSize = 6; // 视频大小
-  repeated string flag = 7;
-  repeated string banker = 8;
-  repeated string player1 = 9;
-  repeated string player2 = 10;
-  repeated string player3 = 11;
-  repeated string other = 12;
-  string simpleFlag = 13;
-  string simpleBanker = 14;
-  string simplePlayer1 = 15;
-  string simplePlayer2 = 16;
-  string simplePlayer3 = 17;
-  string simpleOther = 18;
-}
-
-message ResultRes{
-  int32 code = 1;
-  string msg = 2;
 }
