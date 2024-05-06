@@ -7,4 +7,5 @@ type Handle struct {
 	Msg  string             `json:"msg"`
 	Data cache.NiuNiuResult `json:"data"`
 	Init bool               `json:"init"` // 首次连接初始化
+	UUID string             `json:"uuid"`
 }
