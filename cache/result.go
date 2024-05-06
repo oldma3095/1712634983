@@ -3,12 +3,12 @@ package cache
 import "fmt"
 
 type NiuNiuResult struct {
-	Id            uint64   `json:"id"`
-	SaveTime      int64    `json:"saveTime"`
-	Image         string   `json:"image"`
-	RawImage      string   `json:"rawImage"`
-	Video         string   `json:"video"`
-	VideoSize     int64    `json:"videoSize"`
+	ID            uint     `json:"id"`
+	SaveTime      int64    `json:"saveTime"`  // 保存时间戳
+	Image         string   `json:"image"`     // 图片地址
+	RawImage      string   `json:"rawImage"`  // 图片地址
+	Video         string   `json:"video"`     // 录制视频地址
+	VideoSize     int64    `json:"videoSize"` // 视频大小
 	SaveTimeStr   string   `json:"saveTimeStr"`
 	Flag          []string `json:"flag"`
 	Banker        []string `json:"banker"`
