@@ -1,4 +1,4 @@
-package res
+package master
 
 type ClientInfo struct {
 	Code int         `json:"code"`

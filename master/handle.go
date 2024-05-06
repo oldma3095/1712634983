@@ -1,4 +1,4 @@
-package res
+package master
 
 type Handle struct {
 	Method string `json:"method"`           // create delete update get

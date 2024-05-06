@@ -1,4 +1,4 @@
-package req
+package slave
 
 type FileTransfer struct {
 	Filename string `json:"filename"`

@@ -1,4 +1,4 @@
-package req
+package slave
 
 type Handle struct {
 	Code int32      `json:"code"`
