@@ -15,4 +15,5 @@ type HandlePredict struct {
 
 type HandleRecord struct {
 	RecordFileUrl string `json:"recordFileUrl"` // 录制后返回的视频地址
+	Msg           string `json:"msg"`           // 错误信息
 }
