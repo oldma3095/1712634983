@@ -1,5 +1,8 @@
 package master
 
+type Handle struct {
+}
+
 type HandlePredict struct {
 }
 
