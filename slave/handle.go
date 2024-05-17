@@ -2,11 +2,6 @@ package slave
 
 import "github.com/oldma3095/1712634983/cache"
 
-type Base struct {
-	UUID      string `json:"uuid"`
-	Timestamp int64  `json:"timestamp"`
-}
-
 type Handle struct {
 	Base
 	Init bool `json:"init"` // 首次连接初始化

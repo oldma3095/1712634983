@@ -1,13 +1,13 @@
 package master
 
 type Handle struct {
-	Timestamp int64 `json:"timestamp"`
+	Base
 }
 
 type HandlePredict struct {
-	Timestamp int64 `json:"timestamp"`
+	Base
 }
 
 type HandleRecord struct {
-	Timestamp int64 `json:"timestamp"`
+	Base
 }
