@@ -1,6 +1,6 @@
 package master
 
 type Base struct {
-	CanRecordNow bool  `json:"canRecordNow"`
-	Timestamp    int64 `json:"timestamp"`
+	LotteryStatus uint  `json:"lotteryStatus"`
+	Timestamp     int64 `json:"timestamp"`
 }
